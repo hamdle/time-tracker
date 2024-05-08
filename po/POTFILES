@@ -1,0 +1,6 @@
+data/net.ejmtech.TimerTracker.desktop.in
+data/net.ejmtech.TimerTracker.metainfo.xml.in
+data/net.ejmtech.TimerTracker.gschema.xml
+src/main.c
+src/timer-tracker-window.c
+src/timer-tracker-window.ui

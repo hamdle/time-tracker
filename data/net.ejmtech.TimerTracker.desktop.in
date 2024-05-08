@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=timer-tracker
+Exec=timer-tracker
+Icon=net.ejmtech.TimerTracker
+Terminal=false
+Type=Application
+Categories=GTK;
+StartupNotify=true
