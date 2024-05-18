@@ -24,37 +24,47 @@
 
 struct _TimerTrackerWindow
 {
-	AdwApplicationWindow  parent_instance;
+  AdwApplicationWindow  parent_instance;
 
-	/* Template widgets */
-	AdwHeaderBar        *header_bar;
-	GtkLabel            *label;
+  AdwHeaderBar *header_bar;
+  GtkLabel *timer;
+  GtkButton *start_pause_button;
+  GtkButton *save_button;
+  GtkLabel *inc;
 };
 
 G_DEFINE_FINAL_TYPE (TimerTrackerWindow, timer_tracker_window, ADW_TYPE_APPLICATION_WINDOW)
 
 static void
-timer_tracker_window_class_init (TimerTrackerWindowClass *klass)
+start_pause_handler (TimerTrackerWindow *win)
 {
-	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
-
-	gtk_widget_class_set_template_from_resource (widget_class, "/net/ejmtech/TimerTracker/gui/timer-tracker-window.ui");
-	gtk_widget_class_bind_template_child (widget_class, TimerTrackerWindow, header_bar);
-	gtk_widget_class_bind_template_child (widget_class, TimerTrackerWindow, label);
+  g_message("start_pause");
 }
 
 static void
-add_child (TimerTrackerWindow *win)
+save_handler (TimerTrackerWindow *win)
 {
-  // TODO
-  g_error("HIT");
+  g_message("save");
+}
+
+static void
+timer_tracker_window_class_init (TimerTrackerWindowClass *klass)
+{
+  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+
+  gtk_widget_class_set_template_from_resource (widget_class, "/net/ejmtech/TimerTracker/gui/timer-tracker-window.ui");
+  gtk_widget_class_bind_template_child (widget_class, TimerTrackerWindow, header_bar);
+  gtk_widget_class_bind_template_child (widget_class, TimerTrackerWindow, timer);
+  gtk_widget_class_bind_template_child (widget_class, TimerTrackerWindow, start_pause_button);
+  gtk_widget_class_bind_template_child (widget_class, TimerTrackerWindow, save_button);
+  gtk_widget_class_bind_template_child (widget_class, TimerTrackerWindow, inc);
+
+  gtk_widget_class_bind_template_callback(widget_class, save_handler);
+  gtk_widget_class_bind_template_callback(widget_class, start_pause_handler);
 }
 
 static void
 timer_tracker_window_init (TimerTrackerWindow *self)
 {
-  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (self);
   gtk_widget_init_template (GTK_WIDGET (self));
-
-  gtk_widget_class_bind_template_callback(widget_class, add_child);
 }

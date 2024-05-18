@@ -3,6 +3,7 @@
   <requires lib="gtk" version="4.0"/>
   <requires lib="Adw" version="1.0"/>
   <template class="TimerTrackerWindow" parent="AdwApplicationWindow">
+    <property name="title" translatable="yes">GTK Time Tracker</property>
     <property name="default-width">320</property>
     <property name="default-height">520</property>
     <property name="content">
@@ -23,7 +24,7 @@
           <object class="GtkBox">
             <property name="orientation">vertical</property>
             <child>
-              <object class="GtkLabel" id="label">
+              <object class="GtkLabel" id="timer">
                 <property name="label">00:00:00</property>
                 <style>
                   <class name="title-1"/>
@@ -31,9 +32,23 @@
               </object>
             </child>
             <child>
-              <object class="GtkButton">
+              <object class="GtkButton" id="start_pause_button">
+                <property name="label">Start</property>
+                <signal name="clicked" handler="start_pause_handler" swapped="yes"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="save_button">
                 <property name="label">Save</property>
-                <signal name="clicked" handler="add_child" swapped="yes"/>
+                <signal name="clicked" handler="save_handler" swapped="yes"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel" id="inc">
+                <property name="label">+00:00:00</property>
+                <style>
+                  <class name="title-1"/>
+                </style>
               </object>
             </child>
           </object>
